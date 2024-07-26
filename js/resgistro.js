@@ -14,9 +14,9 @@ document.addEventListener("DOMContentLoaded", function() {
         event.preventDefault(); // Prevenir el envío del formulario
 
         // Obtener el valor de los campos
-        const nombre = nombreU.value.trim();
-        const apellido = apellidoU.value.trim();
-        const email = emailU.value.trim();
+        const nombre = nombreU.value;
+        const apellido = apellidoU.value;
+        const email = emailU.value;
         const contraseña = contraseñaU.value;
 
         // Para que los campos no queden vacíos
