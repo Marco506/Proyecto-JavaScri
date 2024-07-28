@@ -1,0 +1,67 @@
+body{
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+    
+
+}
+
+.contenedorRegistro{
+    
+    background-image: url();
+    padding: 5rem;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0,0,0.1);
+    max-width: 400p;
+    width: 100%;
+}
+.contenedorRegistro h1{
+    margin-bottom: 1rem;
+    font-size: 1.5rem;
+    color: #333;
+}
+.contenedorRegistro label{
+    display: block;
+    margin-bottom: 0.5rem;
+    font-weight:  bold;
+}
+#nombreU,
+#apellidosU,
+#emailU,
+#contraseñaU{
+    width: 100%;
+    padding: 0.8rem;
+    margin-bottom:  1rem;
+    border: 1px solid #ddd;
+    border-radius:  4px;
+    
+}
+#btnRegistro{
+    background-color: #007bff;
+    color: white;
+    border: none;
+    padding: 0.8rem;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 1rem;
+
+}
+#btnSalir{
+    background-color: #b92d50;
+    color: white;
+    border: none;
+    padding: 0.8rem;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: rem;
+    
+    
+   
+}
+
+
+

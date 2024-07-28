@@ -17,7 +17,7 @@ agregar.addEventListener("click",function () {
     let objetTareas = {
         titulo: datoTxt.value,
         seleccion: selectPrioridad.value
-    }
+}
     ListaTareas.push(objetTareas)
 
     localStorage.setItem("task", JSON.stringify(ListaTareas))
@@ -79,44 +79,68 @@ const contenedorEventos = document.getElementById("contenedorEventos")
 
 let listaEventos = [];
 
-function guardarEventos() {
-JSON.parse(localStorage.getItem("task"))  
-
-let dts = guardarEventos;  
-
-}
+ 
 
 
 
 agregarEvento.addEventListener("click",function(){
 
+      
+    let objetEvent = {
+        dateEvento: datoEvento.value,
+        
+}
+    listaEventos.push(objetEvent)
+
+    localStorage.setItem("cargarEvento", JSON.stringify(listaEventos))
     
-     
+
+    
+
+
+    
+    
     let escribirEvento = document.createElement("p");
     let eliminarEvento = document.createElement("button");
     let editarEvento = document.createElement("button")
-
+    let fechaE= document.createElement("p")
     //añadimos id para poder añadirlos al contenedor 
-    
+       
+        
+
         escribirEvento.innerHTML=datoEvento.value;
         escribirEvento.id="añadeEvento"
+
+        fechaE.innerHTML= fechaEvento.value;
+        fechaE.id="fechaE"
 
         eliminarEvento.innerHTML= "EliminarEvento"
         eliminarEvento.id = "borrarEvento"
 
         editarEvento.innerHTML="EditarEvento"
         editarEvento.id="modificarEvento"
+
+    
+
+        
     //Se llama al contenedor con un id  
         contenedorEventos.id="contenedorEventos";
 
+        
+        
         contenedorEventos.appendChild(escribirEvento);
+        contenedorEventos.appendChild(fechaE);
         contenedorEventos.appendChild(eliminarEvento);
         contenedorEventos.appendChild(editarEvento);
+       
 
         eliminarEvento.addEventListener("click", function(){
+        
             contenedorEventos.removeChild(escribirEvento);
+            contenedorEventos.removeChild(fechaE);
             contenedorEventos.removeChild(eliminarEvento);
             contenedorEventos.removeChild(editarEvento);
+            
         })
 
         editarEvento.addEventListener("click",function(){
