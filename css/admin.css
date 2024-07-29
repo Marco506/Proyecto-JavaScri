@@ -1,5 +1,57 @@
+body{
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+    display: flex;
+    justify-content: space-around;
+    background-image: url();
+    height: 100vh;
+    margin: 0;
+    border: 4px solid black;
+}
+.eventosTareas{
+    background-image: url(https://i.pinimg.com/736x/a6/08/f5/a608f5d834cf4c3a983dd4944810d2db.jpg);
+    padding: 5rem;
+    border-radius: 8px;
 
-  
+    max-width: 400p;
+    width: 100%;
+}
+.eventosTareas h3{
+    margin-bottom: 1rem;
+    font-size: 2.5rem;
+    color: #333;
+    font-family: 'Courier New', Courier, monospace;
+}
+#datoTxt,
+#datoEvento
+
+{
+    display: block;
+    margin-bottom: 0.5rem;
+    font-weight:  bold;
+}
+#Eliminarbtn{
+    background-color: #ff0000;
+    color: white;
+    border: none;
+    padding: 0.8rem;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 0.8rem;
+
+}
+
+#tipo{
+    background-color: #0a2036;
+    color: white;
+    border: none;
+    padding: 0.8rem;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 0.8rem;
+
+}
+
   
   
   

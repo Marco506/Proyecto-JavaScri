@@ -33,10 +33,10 @@ agregar.addEventListener("click",function () {
     datosEscribir.id="datos"
 
     btnEliminar.innerHTML="Eliminar"
-    btnEliminar.id="Eliminar"
+    btnEliminar.id="Eliminarbtn"
 
     btnEditar.innerHTML="Editar"
-    btnEditar.id="Editar"
+    btnEditar.id="Editarbtn"
 
 
     contenedorTareas.id = "contenedorTareas";
@@ -88,9 +88,10 @@ agregarEvento.addEventListener("click",function(){
       
     let objetEvent = {
         dateEvento: datoEvento.value,
-        
+        fechaeven: fechaEvento.value
 }
     listaEventos.push(objetEvent)
+
 
     localStorage.setItem("cargarEvento", JSON.stringify(listaEventos))
     

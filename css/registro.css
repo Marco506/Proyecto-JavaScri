@@ -15,14 +15,15 @@ body{
     background-image: url();
     padding: 5rem;
     border-radius: 8px;
-    box-shadow: 0 4px 8px rgba(0,0,0.1);
+    box-shadow: 0 4px 8px rgb(0, 0, 0);
     max-width: 400p;
     width: 100%;
 }
 .contenedorRegistro h1{
     margin-bottom: 1rem;
-    font-size: 1.5rem;
+    font-size: 2.5rem;
     color: #333;
+    font-family: 'Courier New', Courier, monospace;
 }
 .contenedorRegistro label{
     display: block;

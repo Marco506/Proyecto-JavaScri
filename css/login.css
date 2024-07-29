@@ -19,11 +19,13 @@ body{
 }
 
 .loginContainer h2{
+    font-family: 'Courier New', Courier, monospace;
     margin-bottom: 1rem;
-    font-size: 1.5rem;
+    font-size: 2.5rem;
     color: #333;
 }
 .loginContainer label{
+    
     display: block;
     margin-bottom: 0.5rem;
     font-weight:  bold;
