@@ -1,27 +1,28 @@
-document.addEventListener("DOMContentLoaded", function() {
+
     const btnLogin = document.getElementById("btnLogin");
     const usernameInput = document.getElementById("username");
     const passwordInput = document.getElementById("password");
 
     btnLogin.addEventListener("click", function(event) {
-        event.preventDefault(); // Prevenir el envío del formulario
+        event.preventDefault();
 
         // Obtener los valores de los campos de entrada
-        const username = usernameInput.value;
-        const password = passwordInput.value;
+        const username = usernameInput.value.trim();
+        const password = passwordInput.value.trim();
 
-        // Recuperar valores desde localStorage
-        const savedUsername = localStorage.getItem('nombre');
-        const savedPassword = localStorage.getItem('contraseña');
+        let usuarios = JSON.parse(localStorage.getItem("listaUsuarios")) ||[];
 
-        // Comparar los valores ingresados con los valores guardados
-        if (username === savedUsername && password === savedPassword) {
-            alert('Inicio de sesión exitoso!');
+        let UsuarioEncontrado = usuarios.find(usuario =>
+            usuario.nombre === username && usuario.contraseña === password
+        );
+
+        if (UsuarioEncontrado) {
+            alert("Usuario correcto")
+            window.location.href = "adminidracion.html"
+            
         } else {
-            alert('Nombre de usuario o contraseña incorrectos.');
-        }
-    });
-});
-
+            alert("Los datos no coinsiden")
+            
+        }});
 
 

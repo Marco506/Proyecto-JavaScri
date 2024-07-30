@@ -11,9 +11,9 @@ document.addEventListener("DOMContentLoaded", function() {
     let usuarios = JSON.parse(localStorage.getItem("listaUsuarios")) || [];
 
     btnRegistro.addEventListener("click", function(event) {
-        event.preventDefault(); // Prevenir el envío del formulario
+        event.preventDefault(); 
 
-        // Obtener el valor de los campos
+       
         const nombre = nombreU.value;
         const apellido = apellidoU.value;
         const email = emailU.value;
@@ -24,8 +24,6 @@ document.addEventListener("DOMContentLoaded", function() {
             alert("Por favor, complete todos los campos.");
             return;
         }
-
-        // Objeto de usuario
         const nuevoUsuario = {
             nombre: nombre,
             apellido: apellido,

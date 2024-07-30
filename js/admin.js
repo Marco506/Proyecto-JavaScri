@@ -1,14 +1,64 @@
+
 const datoTxt = document.getElementById("datoTxt")
 const selectPrioridad = document.getElementById('tipo')
 const agregar = document.getElementById("agregar")
 
 const contenedorTareas = document.getElementById("contenedorTareas") 
 
-let ListaTareas = [];
+let ListaTareas = JSON.parse(localStorage.getItem("task")) || [];
 
-function cargarDatos() {
-    JSON.parse(localStorage.getItem('task'))
+
+
+function cargaDatos() {
+   for (let index = 0; index < ListaTareas.length; index++) {
+    let item = ListaTareas[index];
+    
+    let datosEscribir = document.createElement("p");
+    let selectorPrioridad = document.createElement('p')
+    let btnEliminar = document.createElement("button");
+    let btnEditar = document.createElement("button")
+
+    datosEscribir.innerHTML = item.titulo;
+    selectorPrioridad.innerHTML = item.seleccion;
+    datosEscribir.id="datos"
+
+    btnEliminar.innerHTML="Eliminar"
+    btnEliminar.id="Eliminarbtn"
+
+    btnEditar.innerHTML="Editar"
+    btnEditar.id="Editarbtn"
+    contenedorTareas.appendChild(datosEscribir);
+
+    contenedorTareas.appendChild(selectorPrioridad);
+    contenedorTareas.appendChild(btnEliminar);
+    contenedorTareas.appendChild(btnEditar);
+
+    btnEliminar.addEventListener("click", function(){
+        contenedorTareas.removeChild(datosEscribir);
+        contenedorTareas.removeChild(selectorPrioridad);
+        contenedorTareas.removeChild(btnEliminar);
+        contenedorTareas.removeChild(btnEditar);    
+        })
+
+        btnEditar.addEventListener("click", function(){
+            let nuevoTexto=prompt("editar tarea", datosEscribir);
+            if (nuevoTexto !== null && nuevoTexto !== "") {
+                datosEscribir.textContent = nuevoTexto;
+                
+                
+        }
+            })
+
+
+
+
+    
+   }
+
+   
 }
+
+ cargaDatos()
 
 
 
@@ -23,43 +73,22 @@ agregar.addEventListener("click",function () {
     localStorage.setItem("task", JSON.stringify(ListaTareas))
 
     let datosEscribir = document.createElement("p");
-    let selectorPrioridad = document.createElement('p')
-    let btnEliminar = document.createElement("button");
-    let btnEditar = document.createElement("button")
-
+   
     
-    datosEscribir.innerHTML = datoTxt.value;
-    selectorPrioridad.innerHTML = selectPrioridad.value
-    datosEscribir.id="datos"
 
-    btnEliminar.innerHTML="Eliminar"
-    btnEliminar.id="Eliminarbtn"
 
-    btnEditar.innerHTML="Editar"
-    btnEditar.id="Editarbtn"
+
+    datosEscribir.innerHTML = objetTareas.titulo;
+   
 
 
     contenedorTareas.id = "contenedorTareas";
-
+    contenedorTareas.appendChild(datosEscribir)
     contenedorTareas.appendChild(datosEscribir);
-    contenedorTareas.appendChild(selectorPrioridad);
-    contenedorTareas.appendChild(btnEliminar);
-    contenedorTareas.appendChild(btnEditar);
+    
+   
 
-    btnEliminar.addEventListener("click", function(){
-    contenedorTareas.removeChild(datosEscribir);
-    contenedorTareas.removeChild(selectorPrioridad);
-    contenedorTareas.removeChild(btnEliminar);
-    contenedorTareas.removeChild(btnEditar);    
-    })
-
-    btnEditar.addEventListener("click", function(){
-    let nuevoTexto=prompt("editar tarea", datosEscribir);
-    if (nuevoTexto !== null && nuevoTexto !== "") {
-        datosEscribir.textContent = nuevoTexto;
-        
-}
-    }) 
+    
 })
 
 
@@ -78,7 +107,7 @@ const agregarEvento = document.getElementById("agregarEven");
 const contenedorEventos = document.getElementById("contenedorEventos")
 
 let listaEventos = [];
-function cargarEvento() {
+function cargaEvento() {
     JSON.parse(localStorage.getItem('cargarEventos'))
 }
 
