@@ -10,7 +10,7 @@ function cargarDatos() {
     JSON.parse(localStorage.getItem('task'))
 }
 
-let datos = cargarDatos();
+
 
 agregar.addEventListener("click",function () {
     
@@ -78,6 +78,9 @@ const agregarEvento = document.getElementById("agregarEven");
 const contenedorEventos = document.getElementById("contenedorEventos")
 
 let listaEventos = [];
+function cargarEvento() {
+    JSON.parse(localStorage.getItem('cargarEventos'))
+}
 
  
 
