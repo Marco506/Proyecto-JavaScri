@@ -9,6 +9,7 @@ body{
    
     
 }
+
 .eventosTareas{
    
     padding: 2rem;
@@ -32,8 +33,9 @@ body{
     margin-bottom: 0.5rem;
     font-weight:  bold;
 }
+#eliminar,
 #Eliminarbtn{
-    background-color: #ff0000;
+    background-color: #4b4040;
     color: white;
     border: none;
     padding: 0.8rem;
@@ -42,8 +44,8 @@ body{
     font-size: 0.8rem;
 
 }
-
-#tipo{
+#editar,
+#Editarbtn{
     background-color: #0a2036;
     color: white;
     border: none;
@@ -53,6 +55,9 @@ body{
     font-size: 0.8rem;
 
 }
+
+
+
 @media (max-width: 600px){
     .eventosTareas{
         padding: 1rem;

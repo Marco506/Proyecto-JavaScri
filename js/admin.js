@@ -18,6 +18,8 @@ let ListaTareas = JSON.parse(localStorage.getItem("task")) || [];
 function cargaDatos() {
    for (let index = 0; index < ListaTareas.length; index++) {
     let item = ListaTareas[index];
+
+ 
     
     let datosEscribir = document.createElement("p");
     let selectorPrioridad = document.createElement('p')
@@ -54,11 +56,14 @@ function cargaDatos() {
         })
 
         btnEditar.addEventListener("click", function(){
-            let nuevoTexto=prompt("editar tarea", datosEscribir);
-            if (nuevoTexto !== null && nuevoTexto !== "") {
+            let nuevoTexto=prompt("editar nuevo texto", datosEscribir);
+            let nuevaseleccion= prompt("editar nueva seleccion",selectorPrioridad);
+            if (nuevoTexto !== null && nuevoTexto !== "" || nuevaseleccion !== null && nuevaseleccion !== "") {
                 datosEscribir.textContent = nuevoTexto;
+                selectorPrioridad.textContent= nuevaseleccion;
                 
                 item.titulo = nuevoTexto;
+                item.seleccion= nuevaseleccion;
                 localStorage.setItem("task", JSON.stringify(ListaTareas))
                 
         }
@@ -72,6 +77,7 @@ function cargaDatos() {
 
 
 agregar.addEventListener("click",function () {
+
 
     let daTarea = datoTxt.value.trim();
 
@@ -165,9 +171,10 @@ function cargaEvento() {
         let fechaE = document.createElement("p");
         let eliminarEvento = document.createElement("button");
         let editarEvento = document.createElement("button");
-
+            //Se actualiza el contenido del elemento.
         escribirEvento.innerHTML = item.dateEvento;
         fechaE.innerHTML = item.fechaeven;
+
         escribirEvento.id = "evento"
         fechaE.id = "fecha"
         eliminarEvento.innerHTML = "Eliminar Evento";
@@ -184,16 +191,20 @@ function cargaEvento() {
             // Elimina el evento de la lista y actualiza localStorage
             listaEventos.splice(index, 1);
             localStorage.setItem("cargarEvento", JSON.stringify(listaEventos));
-            cargaEvento(); // Recarga los eventos para mostrar la lista actualizada
+            cargaEvento(); // Muesttra lista actualizada
         });
 
         editarEvento.addEventListener("click", function() {
             // Edita el evento en la lista y actualiza localStorage
+            
             let nuevoEvento = prompt("Editar el evento", escribirEvento.textContent);
-            if (nuevoEvento !== null && nuevoEvento !== "") {
+            let nuevaFecha = prompt ("Editar fecha", fechaE.textContent);
+            if (nuevoEvento !== null && nuevoEvento !== "" || nuevaFecha !== null && nuevaFecha !== "") {
                 listaEventos[index].dateEvento = nuevoEvento;
+                listaEventos[index].fechaeven = nuevaFecha;
+                
                 localStorage.setItem("cargarEvento", JSON.stringify(listaEventos));
-                cargaEvento(); // Recarga los eventos para mostrar el evento actualizado
+                cargaEvento(); 
             }
         });
     }

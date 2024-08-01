@@ -1,4 +1,4 @@
-document.addEventListener("DOMContentLoaded", function() {
+document.addEventListener("DOMContentLoaded", function() { //asegura se ejecute cuando a sido implementado el html completamente
     const nombreU = document.getElementById("nombreU");
     const apellidoU = document.getElementById("apellidosU");
     const emailU = document.getElementById("emailU");
@@ -37,13 +37,13 @@ document.addEventListener("DOMContentLoaded", function() {
         // Guardar en localStorage (clave: "listaUsuarios")
         localStorage.setItem("listaUsuarios", JSON.stringify(usuarios));
 
-        // Limpiar los campos después de guardar
+        // Limpia los campos cuando se guarda
         nombreU.value = "";
         apellidoU.value = "";
         emailU.value = "";
         contraseñaU.value = "";
 
-        // Mostrar alerta después de registrar
+        
         alert("Usuario registrado correctamente");
     });
 });
