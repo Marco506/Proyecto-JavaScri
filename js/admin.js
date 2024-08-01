@@ -1,3 +1,9 @@
+/*JavaScript tiene una función incorporada para convertir cadenas JSON en objetos JavaScript:
+JSON.parse()
+
+JavaScript también tiene una función incorporada para convertir un objeto en una cadena JSON:
+JSON.stringify()
+*/
 
 const datoTxt = document.getElementById("datoTxt")
 const selectPrioridad = document.getElementById('tipo')
@@ -28,7 +34,6 @@ function cargaDatos() {
     btnEditar.innerHTML="Editar"
     btnEditar.id="Editarbtn"
     contenedorTareas.appendChild(datosEscribir);
-
     contenedorTareas.appendChild(selectorPrioridad);
     contenedorTareas.appendChild(btnEliminar);
     contenedorTareas.appendChild(btnEditar);
@@ -37,7 +42,15 @@ function cargaDatos() {
         contenedorTareas.removeChild(datosEscribir);
         contenedorTareas.removeChild(selectorPrioridad);
         contenedorTareas.removeChild(btnEliminar);
-        contenedorTareas.removeChild(btnEditar);    
+        contenedorTareas.removeChild(btnEditar); 
+
+          // Actualizar lista y localStorage
+        ListaTareas= ListaTareas.filter(t => t.titulo !== item.titulo)
+        localStorage.setItem("task", JSON.stringify(ListaTareas));
+          
+       
+        
+
         })
 
         btnEditar.addEventListener("click", function(){
@@ -45,16 +58,12 @@ function cargaDatos() {
             if (nuevoTexto !== null && nuevoTexto !== "") {
                 datosEscribir.textContent = nuevoTexto;
                 
+                item.titulo = nuevoTexto;
+                localStorage.setItem("task", JSON.stringify(ListaTareas))
                 
         }
             })
-
-
-
-
-    
-   }
-
+ }
    
 }
 
@@ -63,6 +72,13 @@ function cargaDatos() {
 
 
 agregar.addEventListener("click",function () {
+
+    let daTarea = datoTxt.value.trim();
+
+    if (daTarea === "") {
+      alert("Complete todos los campos")  
+      return;
+    }
     
     let objetTareas = {
         titulo: datoTxt.value,
@@ -73,19 +89,54 @@ agregar.addEventListener("click",function () {
     localStorage.setItem("task", JSON.stringify(ListaTareas))
 
     let datosEscribir = document.createElement("p");
-   
-    
-
-
+    let selectorPrioridad = document.createElement('p');
+    let btnEliminar = document.createElement("button");
+    let btnEditar = document.createElement("button");
 
     datosEscribir.innerHTML = objetTareas.titulo;
+    selectorPrioridad.innerHTML = objetTareas.seleccion;
    
 
 
     contenedorTareas.id = "contenedorTareas";
     contenedorTareas.appendChild(datosEscribir)
-    contenedorTareas.appendChild(datosEscribir);
+    contenedorTareas.appendChild(selectorPrioridad);
     
+    btnEliminar.innerHTML="Eliminar"
+    btnEliminar.id="Eliminarbtn"
+
+    btnEditar.innerHTML="Editar"
+    btnEditar.id="Editarbtn"
+    contenedorTareas.appendChild(datosEscribir);
+    contenedorTareas.appendChild(selectorPrioridad);
+    contenedorTareas.appendChild(btnEliminar);
+    contenedorTareas.appendChild(btnEditar);
+
+    btnEliminar.addEventListener("click", function(){
+        contenedorTareas.removeChild(datosEscribir);
+        contenedorTareas.removeChild(selectorPrioridad);
+        contenedorTareas.removeChild(btnEliminar);
+        contenedorTareas.removeChild(btnEditar); 
+        ListaTareas= ListaTareas.filter(t => t.titulo !== item.titulo)
+        localStorage.setItem("task", JSON.stringify(ListaTareas))
+        
+        
+        
+
+        });
+
+        btnEditar.addEventListener("click", function(){
+            let nuevoTexto=prompt("editar tarea", datosEscribir);
+            if (nuevoTexto !== null && nuevoTexto !== "") {
+                datosEscribir.textContent = nuevoTexto;
+
+                item.titulo = nuevoTexto;
+                localStorage.setItem("task", JSON.stringify(ListaTareas))
+                
+                
+        }
+            })
+ 
    
 
     
@@ -94,97 +145,77 @@ agregar.addEventListener("click",function () {
 
 //......................................................................................................................
 
-/*JavaScript tiene una función incorporada para convertir cadenas JSON en objetos JavaScript:
-JSON.parse()
 
-JavaScript también tiene una función incorporada para convertir un objeto en una cadena JSON:
-JSON.stringify()
-*/
+
 const datoEvento = document.getElementById("datoEvento");
 const fechaEvento = document.getElementById("fecha");
-
 const agregarEvento = document.getElementById("agregarEven");
-const contenedorEventos = document.getElementById("contenedorEventos")
+const contenedorEventos = document.getElementById("contenedorEventos");
 
-let listaEventos = [];
+// Cargar eventos desde localStorage, o inicializar un array vacío si no hay datos guardados
+let listaEventos = JSON.parse(localStorage.getItem("cargarEvento")) || [];
+
+// Función para cargar los eventos guardados en la página
 function cargaEvento() {
-    JSON.parse(localStorage.getItem('cargarEventos'))
-}
+    contenedorEventos.innerHTML = ''; // Limpia el contenedor antes de cargar nuevos eventos
+    for (let index = 0; index < listaEventos.length; index++) {
+        let item = listaEventos[index];
 
- 
+        let escribirEvento = document.createElement("p");
+        let fechaE = document.createElement("p");
+        let eliminarEvento = document.createElement("button");
+        let editarEvento = document.createElement("button");
 
+        escribirEvento.innerHTML = item.dateEvento;
+        fechaE.innerHTML = item.fechaeven;
+        escribirEvento.id = "evento"
+        fechaE.id = "fecha"
+        eliminarEvento.innerHTML = "Eliminar Evento";
+        eliminarEvento.id = "eliminar"
+        editarEvento.innerHTML = "Editar Evento";
+        editarEvento.id = "editar"
 
-
-agregarEvento.addEventListener("click",function(){
-
-      
-    let objetEvent = {
-        dateEvento: datoEvento.value,
-        fechaeven: fechaEvento.value
-}
-    listaEventos.push(objetEvent)
-
-
-    localStorage.setItem("cargarEvento", JSON.stringify(listaEventos))
-    
-
-    
-
-
-    
-    
-    let escribirEvento = document.createElement("p");
-    let eliminarEvento = document.createElement("button");
-    let editarEvento = document.createElement("button")
-    let fechaE= document.createElement("p")
-    //añadimos id para poder añadirlos al contenedor 
-       
-        
-
-        escribirEvento.innerHTML=datoEvento.value;
-        escribirEvento.id="añadeEvento"
-
-        fechaE.innerHTML= fechaEvento.value;
-        fechaE.id="fechaE"
-
-        eliminarEvento.innerHTML= "EliminarEvento"
-        eliminarEvento.id = "borrarEvento"
-
-        editarEvento.innerHTML="EditarEvento"
-        editarEvento.id="modificarEvento"
-
-    
-
-        
-    //Se llama al contenedor con un id  
-        contenedorEventos.id="contenedorEventos";
-
-        
-        
         contenedorEventos.appendChild(escribirEvento);
         contenedorEventos.appendChild(fechaE);
         contenedorEventos.appendChild(eliminarEvento);
         contenedorEventos.appendChild(editarEvento);
-       
 
-        eliminarEvento.addEventListener("click", function(){
-        
-            contenedorEventos.removeChild(escribirEvento);
-            contenedorEventos.removeChild(fechaE);
-            contenedorEventos.removeChild(eliminarEvento);
-            contenedorEventos.removeChild(editarEvento);
-            
-        })
+        eliminarEvento.addEventListener("click", function() {
+            // Elimina el evento de la lista y actualiza localStorage
+            listaEventos.splice(index, 1);
+            localStorage.setItem("cargarEvento", JSON.stringify(listaEventos));
+            cargaEvento(); // Recarga los eventos para mostrar la lista actualizada
+        });
 
-        editarEvento.addEventListener("click",function(){
-        let nuevoEvento=prompt("Editar el evento",escribirEvento)
-        if (nuevoEvento !== null && nuevoEvento !== ""){
-        escribirEvento.textContent=nuevoEvento
-        }            
-        })
+        editarEvento.addEventListener("click", function() {
+            // Edita el evento en la lista y actualiza localStorage
+            let nuevoEvento = prompt("Editar el evento", escribirEvento.textContent);
+            if (nuevoEvento !== null && nuevoEvento !== "") {
+                listaEventos[index].dateEvento = nuevoEvento;
+                localStorage.setItem("cargarEvento", JSON.stringify(listaEventos));
+                cargaEvento(); // Recarga los eventos para mostrar el evento actualizado
+            }
+        });
+    }
+}
 
-    
+// Llama a la función para cargar los eventos al cargar la página
+cargaEvento();
 
+agregarEvento.addEventListener("click", function() {
+    let dato = datoEvento.value.trim();
+    let fecha = fechaEvento.value.trim();
 
-})
+  if (dato === "" || fecha === "") {
+        alert("completa todos los campos");
+        return;
+    }
+    let objetEvent = {
+        dateEvento: datoEvento.value,
+        fechaeven: fechaEvento.value
+    };
 
+    listaEventos.push(objetEvent);
+    localStorage.setItem("cargarEvento", JSON.stringify(listaEventos));
+    cargaEvento(); // Recarga los eventos para mostrar el nuevo evento
+}); 
